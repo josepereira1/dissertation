@@ -4,6 +4,8 @@
 
 # Dissertation: Study on the importance of the Principles and  Patterns of Microservices Architectures
 
+**Notice**: The dissertation document will be placed here shortly when it is published.
+
 # Links:
 - [Website](https://josepereira1.github.io/)
 - [LinkedIn](https://www.linkedin.com/in/joseandrepereira)
@@ -11,14 +13,14 @@
 - [Docker images repository](https://hub.docker.com/u/josepereira1)
 
 # Index:
-- [Microservice List](https://github.com/josepereira1/dissertation/edit/main/README.md#microservice-list)
-- [How to deploy the case study](https://github.com/josepereira1/dissertation/edit/main/README.md#how-to-deploy-the-case-study)
-  - [Requirements](https://github.com/josepereira1/dissertation/edit/main/README.md#requirements)
-  - [Deployment process (Unix)](https://github.com/josepereira1/dissertation/edit/main/README.md#deployment-process-unix)
-  - [After first deployment](https://github.com/josepereira1/dissertation/edit/main/README.md#after-first-deployment) 
-- [Use case study application (after deployment)](https://github.com/josepereira1/dissertation/edit/main/README.md#use-case-study-application-after-deployment)
-  - [Default users](https://github.com/josepereira1/dissertation/edit/main/README.md#default-users)
-  - [Access monitoring services](https://github.com/josepereira1/dissertation/edit/main/README.md#access-monitoring-services)
+- Microservice List(#microservice-list)
+- [How to deploy the case study](#how-to-deploy-the-case-study)
+  - [Requirements]#requirements)
+  - [Deployment process (Unix)](#deployment-process-unix)
+  - [After first deployment](#after-first-deployment) 
+- [Use case study application (after deployment)](#use-case-study-application-after-deployment)
+  - [Default users](#default-users)
+  - [Access monitoring services](#access-monitoring-services)
 
 # Microservice List:
 
