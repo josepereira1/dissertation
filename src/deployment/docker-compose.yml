@@ -1,0 +1,336 @@
+version: '3.8'
+
+volumes:
+  kong_data: {}
+  portainer_data: {}
+
+networks:
+  kong-net:
+    external: false
+  postgres-cp-net:
+    external: false
+  postgres-cc-net:
+    external: false
+  postgres-inventory-net:
+    external: false
+  postgres-sc-net:
+    external: false
+  mongo-net:
+    external: false
+  rabbitmq-net:
+    driver: bridge
+
+services: 
+
+  frontend:
+    container_name: frontend
+    #image: vue
+    restart: always
+    image: josepereira1/frontend:0.0.1-beta
+    ports:
+      - ${FRONT_END_PORT}:8080
+
+  saga:
+    container_name: saga
+    restart: always
+    image: josepereira1/saga:0.0.1-beta
+    ports:
+    - ${SAGA_PORT}:8080
+    depends_on:
+      - mongo
+      - rabbitmq
+    networks: 
+      - kong-net
+      - mongo-net
+      - rabbitmq-net
+
+  cp:
+    container_name: cp
+    restart: always
+    image: josepereira1/cp:0.0.1-beta
+    ports:
+    - ${CP_PORT}:8080
+    depends_on:
+      - postgres-cp
+      - rabbitmq
+    networks: 
+      - postgres-cp-net
+      - rabbitmq-net
+
+  qp:
+    container_name: qp
+    restart: always
+    image: josepereira1/qp:0.0.1-beta
+    ports:
+    - ${QP_PORT}:8080
+    depends_on:
+      - mongo
+      - rabbitmq
+    networks: 
+      - kong-net
+      - mongo-net
+      - rabbitmq-net
+
+  cc:
+    container_name: cc
+    restart: always
+    image: josepereira1/cc:0.0.1-beta
+    ports:
+    - ${CC_PORT}:8080
+    depends_on:
+      - postgres-cc
+      - rabbitmq
+    networks: 
+      - kong-net
+      - postgres-cc-net
+      - rabbitmq-net
+
+  qcvp:
+    container_name: qcvp
+    restart: always
+    image: josepereira1/qcvp:0.0.1-beta
+    ports:
+    - ${QCVP_PORT}:8080
+    depends_on:
+      - mongo
+      - rabbitmq
+    networks: 
+      - kong-net
+      - mongo-net
+      - rabbitmq-net
+  qcap:
+    container_name: qcap
+    restart: always
+    image: josepereira1/qcap:0.0.1-beta
+    ports:
+    - ${QCAP_PORT}:8080
+    depends_on:
+      - mongo
+      - rabbitmq
+    networks: 
+      - kong-net
+      - mongo-net
+      - rabbitmq-net
+
+  qct:
+    container_name: qct
+    restart: always
+    image: josepereira1/qct:0.0.1-beta
+    ports:
+    - ${QCT_PORT}:8080
+    depends_on:
+      - mongo
+      - rabbitmq
+    networks: 
+      - kong-net
+      - mongo-net
+      - rabbitmq-net
+
+  co:
+    container_name: co
+    restart: always
+    image: josepereira1/co:0.0.1-beta
+    ports:
+    - ${CO_PORT}:8080
+    depends_on:
+      - mongo
+      - rabbitmq
+    networks: 
+      - kong-net
+      - mongo-net
+      - rabbitmq-net
+
+  inventory:
+    container_name: inventory
+    restart: always
+    image: josepereira1/inventory:0.0.1-beta
+    ports:
+    - ${INVENTORY_PORT}:8080
+    depends_on:
+      - postgres-inventory
+    networks: 
+      - kong-net
+      - postgres-inventory-net
+      - rabbitmq-net
+
+  manager:
+    container_name: manager
+    restart: always
+    image: josepereira1/manager:0.0.1-beta
+    ports:
+    - ${MANAGER_PORT}:8080
+    depends_on:
+      - mongo
+    networks: 
+      - kong-net
+      - mongo-net
+
+  consumer:
+    container_name: consumer
+    restart: always
+    image: josepereira1/consumer:0.0.1-beta
+    ports:
+    - ${CONSUMER_PORT}:8080
+    depends_on:
+      - mongo
+    networks: 
+      - kong-net
+      - mongo-net
+
+  sc:
+    container_name: sc
+    restart: always
+    image: josepereira1/sc:0.0.1-beta
+    ports:
+    - ${SC_PORT}:8080
+    depends_on:
+      - postgres-sc
+    networks: 
+      - kong-net
+      - postgres-sc-net
+      - rabbitmq-net
+
+  populate:
+    container_name: populate
+    restart: always
+    image: josepereira1/populate:0.0.1-beta
+    ports:
+    - ${POPULATE_PORT}:8080
+    networks:
+      - kong-net
+
+  postgres-cp:
+    container_name: postgres-cp
+    image: postgres:13.3-alpine
+    environment:
+      POSTGRES_USER: ${POSTGRES_ROOT_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_ROOT_PASSWORD}
+      POSTGRES_DB: ${CP_DATABASE_NAME}
+      PGDATA: /data/postgres
+    command: postgres -c 'max_connections=500'
+    volumes:
+        - ${POSTGRES_VOLUME_DIR}/${CP_DATABASE_NAME}:/data/postgres
+    ports:
+      - ${CP_DATABASE_PORT}:5432
+    networks:
+      - postgres-cp-net
+    restart: unless-stopped
+  
+  postgres-cc:
+    container_name: postgres-cc
+    image: postgres:13.3-alpine
+    environment:
+      POSTGRES_USER: ${POSTGRES_ROOT_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_ROOT_PASSWORD}
+      POSTGRES_DB: ${CC_DATABASE_NAME}
+      PGDATA: /data/postgres
+    command: postgres -c 'max_connections=500'
+    volumes:
+        - ${POSTGRES_VOLUME_DIR}/${CC_DATABASE_NAME}:/data/postgres
+    ports:
+      - ${CC_DATABASE_PORT}:5432
+    networks:
+      - postgres-cc-net
+    restart: unless-stopped
+   
+  postgres-inventory:
+    container_name: postgres-inventory
+    image: postgres:13.3-alpine
+    environment:
+      POSTGRES_USER: ${POSTGRES_ROOT_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_ROOT_PASSWORD}
+      POSTGRES_DB: ${INVENTORY_DATABASE_NAME}
+      PGDATA: /data/postgres
+    command: postgres -c 'max_connections=500'
+    volumes:
+        - ${POSTGRES_VOLUME_DIR}/${INVENTORY_DATABASE_NAME}:/data/postgres
+    ports:
+      - ${INVENTORY_DATABASE_PORT}:5432
+    networks:
+      - postgres-inventory-net
+    restart: unless-stopped
+
+  postgres-sc:
+    container_name: postgres-sc
+    image: postgres:13.3-alpine
+    environment:
+      POSTGRES_USER: ${POSTGRES_ROOT_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_ROOT_PASSWORD}
+      POSTGRES_DB: ${SC_DATABASE_NAME}
+      PGDATA: /data/postgres
+    command: postgres -c 'max_connections=500'
+    volumes:
+        - ${POSTGRES_VOLUME_DIR}/${SC_DATABASE_NAME}:/data/postgres
+    ports:
+      - ${SC_DATABASE_PORT}:5432
+    networks:
+      - postgres-sc-net
+    restart: unless-stopped
+
+  adminer:
+    container_name: adminer
+    image: adminer:4.8.1
+    restart: always
+    ports:
+     - ${ADMINER_PORT}:8080
+    depends_on:
+      - postgres-cp
+      - postgres-cc
+      - postgres-inventory
+      - postgres-sc
+    networks:
+      - postgres-cp-net
+      - postgres-cc-net
+      - postgres-inventory-net
+      - postgres-sc-net
+
+  rabbitmq:
+    container_name: rabbitmq
+    image: rabbitmq:3.8.19-management-alpine
+    restart: always
+    ports:
+        - ${RABBITMQ_PORT}:5672
+        - ${RABBITMQ_ADMINER_PORT}:15672
+    volumes:
+        - ${RABBITMQ_VOLUME_DIR}/data/:/var/lib/rabbitmq/
+        - ${RABBITMQ_VOLUME_DIR}/log/:/var/log/rabbitmq
+    networks:
+        - rabbitmq-net
+        
+  mongo:
+    container_name: mongo
+    image: mongo:4.4.3
+    restart: always
+    ports:
+      - ${MONGO_PORT}:27017
+    volumes:
+      - ${MONGO_VOLUME_DIR}:/data/db
+    networks:
+      - mongo-net
+
+  mongo-express:
+    container_name: mongo-express
+    image: mongo-express:0.54.0
+    restart: unless-stopped
+    ports:
+      - ${MONGO_EXPRESS_PORT}:8081
+    depends_on:
+      - mongo
+    networks:
+      - mongo-net
+    
+  kong:
+    container_name: kong
+    image: kong:2.3.3
+    ports:
+      - '8000:8000'
+      - '8443:8443'
+      - '8001:8001'
+    environment:
+      - KONG_DATABASE=off
+      - KONG_ADMIN_LISTEN=0.0.0.0:8001
+    volumes:
+      - ${KONG_VOLUME_DIR}/kong.conf:/etc/kong/kong.conf
+      - ${KONG_VOLUME_DIR}/kong.yaml:/usr/local/kong/declarative/kong.yaml
+    networks:
+      - kong-net

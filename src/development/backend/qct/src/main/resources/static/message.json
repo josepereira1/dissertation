@@ -1,0 +1,39 @@
+{
+  "$schema" : "http://json-schema.org/draft-04/schema#",
+  "title": "message",
+  "type": "object",
+  "properties": {
+    "owner": {
+      "type": "string"
+    },
+    "exchange": {
+      "type": "string"
+    },
+    "routing": {
+      "type": "string"
+    },
+    "type": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string"
+    },
+    "code": {
+      "type": "integer"
+    },
+    "message": {
+      "type": "string"
+    },
+    "method": {
+      "type": "string"
+    },
+    "metadata": {
+      "type": "object"
+    },
+    "data": {
+      "type": "object"
+    }
+  },
+  "required": ["owner", "exchange", "routing", "type", "status", "code", "message", "method", "metadata", "data"],
+  "additionalProperties": false
+}

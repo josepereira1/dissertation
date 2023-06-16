@@ -1,0 +1,55 @@
+{
+  "$schema" : "http://json-schema.org/draft-04/schema#",
+  "title": "message",
+  "type": "object",
+  "properties": {
+    "clientId": {
+      "type": "string"
+    },
+    "tin": {
+      "type": "string"
+    },
+    "chargeAddress": {
+      "type": "object",
+      "properties": {
+        "address": {
+          "type": "string"
+        },
+        "city":{
+          "type": "string"
+        },
+        "postalCode": {
+          "type": "string"
+        },
+        "country": {
+          "type": "string"
+        }
+      },
+      "required": ["address", "city", "postalCode", "country"]
+    },
+    "deliveryAddress": {
+      "type": "object",
+      "properties": {
+        "address": {
+          "type": "string"
+        },
+        "city":{
+          "type": "string"
+        },
+        "postalCode": {
+          "type": "string"
+        },
+        "country": {
+          "type": "string"
+        }
+      },
+      "required": ["address", "city", "postalCode", "country"],
+      "additionalProperties": false
+    },
+    "other": {
+
+    }
+  },
+  "required": ["clientId", "chargeAddress", "deliveryAddress"],
+  "additionalProperties": false
+}

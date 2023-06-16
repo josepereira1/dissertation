@@ -1,0 +1,28 @@
+package com.ecommerce.qcap.inbound.messaging.cqrs.category.category.deleteproductincategories.config;
+
+import org.springframework.amqp.core.Binding;
+import org.springframework.amqp.core.BindingBuilder;
+import org.springframework.amqp.core.Queue;
+import org.springframework.amqp.core.TopicExchange;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+
+@Configuration
+public class CQRSDeleteProductInCategoriesRabbitMQConfig {
+    @Value("${cc.publisher.exchange.name}")
+    private String exchange;
+
+    @Value("${cqrs.0.delete.product.in.categories.routing.key}")
+    private String routingKey;
+
+    @Bean(name = "cqrsDeleteProductInCategoriesExchange")
+    TopicExchange exchange() {
+        return new TopicExchange(exchange);
+    }
+
+    @Bean(name = "cqrsDeleteProductInCategoriesBinding")
+    Binding binding(Queue queue, TopicExchange cqrsDeleteCategoriesExchange) {
+        return BindingBuilder.bind(queue).to(cqrsDeleteCategoriesExchange).with(routingKey);
+    }
+}

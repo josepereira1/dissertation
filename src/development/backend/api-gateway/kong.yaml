@@ -1,0 +1,2317 @@
+_format_version: "1.1"
+services:
+- connect_timeout: 60000
+  host: cc
+  name: cc
+  path: /cc
+  port: 8080
+  protocol: http
+  read_timeout: 60000
+  retries: 5
+  write_timeout: 60000
+  routes:
+  - name: cc_add_categories_to_product
+    methods:
+    - POST
+    - PATCH
+    paths:
+    - /api/products/.*/categories
+    path_handling: v0
+    preserve_host: false
+    protocols:
+    - http
+    - https
+    regex_priority: 0
+    strip_path: false
+    https_redirect_status_code: 426
+    plugins:
+    - name: acl
+      config:
+        allow:
+        - manager
+        - admin
+        deny: null
+        hide_groups_header: false
+      enabled: true
+      protocols:
+      - grpc
+      - grpcs
+      - http
+      - https
+    - name: jwt
+      config:
+        anonymous: null
+        claims_to_verify:
+        - exp
+        cookie_names: []
+        header_names:
+        - authorization
+        key_claim_name: iss
+        maximum_expiration: 0
+        run_on_preflight: true
+        secret_is_base64: true
+        uri_param_names:
+        - jwt
+      enabled: true
+      protocols:
+      - grpc
+      - grpcs
+      - http
+      - https
+  - name: cc_create_version
+    methods:
+    - POST
+    paths:
+    - /api/versions/cc
+    path_handling: v0
+    preserve_host: false
+    protocols:
+    - http
+    - https
+    regex_priority: 0
+    strip_path: false
+    https_redirect_status_code: 426
+    plugins:
+    - name: acl
+      config:
+        allow:
+        - admin
+        deny: null
+        hide_groups_header: false
+      enabled: true
+      protocols:
+      - grpc
+      - grpcs
+      - http
+      - https
+    - name: jwt
+      config:
+        anonymous: null
+        claims_to_verify:
+        - exp
+        cookie_names: []
+        header_names:
+        - authorization
+        key_claim_name: iss
+        maximum_expiration: 0
+        run_on_preflight: true
+        secret_is_base64: true
+        uri_param_names:
+        - jwt
+      enabled: true
+      protocols:
+      - grpc
+      - grpcs
+      - http
+      - https
+  - name: cc_delete_category
+    methods:
+    - DELETE
+    paths:
+    - /api/categories/.*
+    path_handling: v0
+    preserve_host: false
+    protocols:
+    - http
+    - https
+    regex_priority: 0
+    strip_path: false
+    https_redirect_status_code: 426
+    plugins:
+    - name: acl
+      config:
+        allow:
+        - manager
+        - admin
+        deny: null
+        hide_groups_header: false
+      enabled: true
+      protocols:
+      - grpc
+      - grpcs
+      - http
+      - https
+    - name: jwt
+      config:
+        anonymous: null
+        claims_to_verify:
+        - exp
+        cookie_names: []
+        header_names:
+        - authorization
+        key_claim_name: iss
+        maximum_expiration: 0
+        run_on_preflight: true
+        secret_is_base64: true
+        uri_param_names:
+        - jwt
+      enabled: true
+      protocols:
+      - grpc
+      - grpcs
+      - http
+      - https
+  - name: cc_delete_category_preflight
+    methods:
+    - OPTIONS
+    paths:
+    - /api/categories/.*
+    path_handling: v0
+    preserve_host: false
+    protocols:
+    - http
+    - https
+    regex_priority: 0
+    strip_path: false
+    https_redirect_status_code: 426
+  - name: cc_read_product_categories
+    methods:
+    - GET
+    paths:
+    - /api/products/.*/categories
+    path_handling: v0
+    preserve_host: false
+    protocols:
+    - http
+    - https
+    regex_priority: 5
+    strip_path: false
+    https_redirect_status_code: 426
+    plugins:
+    - name: acl
+      config:
+        allow:
+        - manager
+        - admin
+        deny: null
+        hide_groups_header: false
+      enabled: true
+      protocols:
+      - grpc
+      - grpcs
+      - http
+      - https
+    - name: jwt
+      config:
+        anonymous: null
+        claims_to_verify:
+        - exp
+        cookie_names: []
+        header_names:
+        - authorization
+        key_claim_name: iss
+        maximum_expiration: 0
+        run_on_preflight: true
+        secret_is_base64: true
+        uri_param_names:
+        - jwt
+      enabled: true
+      protocols:
+      - grpc
+      - grpcs
+      - http
+      - https
+  - name: cc_remove_categories_to_product
+    methods:
+    - DELETE
+    paths:
+    - /api/products/.*/categories
+    path_handling: v0
+    preserve_host: false
+    protocols:
+    - http
+    - https
+    regex_priority: 0
+    strip_path: false
+    https_redirect_status_code: 426
+    plugins:
+    - name: acl
+      config:
+        allow:
+        - manager
+        - admin
+        deny: null
+        hide_groups_header: false
+      enabled: true
+      protocols:
+      - grpc
+      - grpcs
+      - http
+      - https
+    - name: jwt
+      config:
+        anonymous: null
+        claims_to_verify:
+        - exp
+        cookie_names: []
+        header_names:
+        - authorization
+        key_claim_name: iss
+        maximum_expiration: 0
+        run_on_preflight: true
+        secret_is_base64: true
+        uri_param_names:
+        - jwt
+      enabled: true
+      protocols:
+      - grpc
+      - grpcs
+      - http
+      - https
+  - name: cc_update_category_name
+    methods:
+    - PATCH
+    paths:
+    - /api/categories
+    path_handling: v0
+    preserve_host: false
+    protocols:
+    - http
+    - https
+    regex_priority: 0
+    strip_path: false
+    https_redirect_status_code: 426
+    plugins:
+    - name: acl
+      config:
+        allow:
+        - manager
+        - admin
+        deny: null
+        hide_groups_header: false
+      enabled: true
+      protocols:
+      - grpc
+      - grpcs
+      - http
+      - https
+    - name: jwt
+      config:
+        anonymous: null
+        claims_to_verify:
+        - exp
+        cookie_names: []
+        header_names:
+        - authorization
+        key_claim_name: iss
+        maximum_expiration: 0
+        run_on_preflight: true
+        secret_is_base64: true
+        uri_param_names:
+        - jwt
+      enabled: true
+      protocols:
+      - grpc
+      - grpcs
+      - http
+      - https
+  - name: cc_update_category_name_preflight
+    methods:
+    - OPTIONS
+    paths:
+    - /api/categories
+    path_handling: v0
+    preserve_host: false
+    protocols:
+    - http
+    - https
+    regex_priority: 0
+    strip_path: false
+    https_redirect_status_code: 426
+  - name: cc_create_category
+    methods:
+    - POST
+    paths:
+    - /api/categories
+    path_handling: v0
+    preserve_host: false
+    protocols:
+    - http
+    - https
+    regex_priority: 0
+    strip_path: false
+    https_redirect_status_code: 426
+    plugins:
+    - name: acl
+      config:
+        allow:
+        - manager
+        - admin
+        deny: null
+        hide_groups_header: false
+      enabled: true
+      protocols:
+      - grpc
+      - grpcs
+      - http
+      - https
+    - name: jwt
+      config:
+        anonymous: null
+        claims_to_verify:
+        - exp
+        cookie_names: []
+        header_names:
+        - authorization
+        key_claim_name: iss
+        maximum_expiration: 0
+        run_on_preflight: true
+        secret_is_base64: true
+        uri_param_names:
+        - jwt
+      enabled: true
+      protocols:
+      - grpc
+      - grpcs
+      - http
+      - https
+  - name: cc_create_category_preflight
+    methods:
+    - OPTIONS
+    paths:
+    - /api/categories
+    path_handling: v0
+    preserve_host: false
+    protocols:
+    - http
+    - https
+    regex_priority: 0
+    strip_path: false
+    https_redirect_status_code: 426
+  - name: cc_update_subcategories
+    methods:
+    - PATCH
+    - POST
+    paths:
+    - /api/categories/.*/subcategories
+    path_handling: v0
+    preserve_host: false
+    protocols:
+    - http
+    - https
+    regex_priority: 0
+    strip_path: false
+    https_redirect_status_code: 426
+    plugins:
+    - name: acl
+      config:
+        allow:
+        - manager
+        - admin
+        deny: null
+        hide_groups_header: false
+      enabled: true
+      protocols:
+      - grpc
+      - grpcs
+      - http
+      - https
+    - name: jwt
+      config:
+        anonymous: null
+        claims_to_verify:
+        - exp
+        cookie_names: []
+        header_names:
+        - authorization
+        key_claim_name: iss
+        maximum_expiration: 0
+        run_on_preflight: true
+        secret_is_base64: true
+        uri_param_names:
+        - jwt
+      enabled: true
+      protocols:
+      - grpc
+      - grpcs
+      - http
+      - https
+  - name: cc_update_subcategories_preflight
+    methods:
+    - OPTIONS
+    paths:
+    - /api/categories/.*/subcategories
+    path_handling: v0
+    preserve_host: false
+    protocols:
+    - http
+    - https
+    regex_priority: 0
+    strip_path: false
+    https_redirect_status_code: 426
+- connect_timeout: 60000
+  host: consumer
+  name: consumer
+  path: /consumer
+  port: 8080
+  protocol: http
+  read_timeout: 60000
+  retries: 5
+  write_timeout: 60000
+  routes:
+  - name: client_basic_authenticate
+    methods:
+    - POST
+    paths:
+    - /api/consumer/basic/auth
+    path_handling: v0
+    preserve_host: false
+    protocols:
+    - http
+    - https
+    regex_priority: 0
+    strip_path: false
+    https_redirect_status_code: 426
+  - name: client_basic_authenticate_preflight
+    methods:
+    - OPTIONS
+    paths:
+    - /api/consumer/basic/auth
+    path_handling: v0
+    preserve_host: false
+    protocols:
+    - http
+    - https
+    regex_priority: 0
+    strip_path: false
+    https_redirect_status_code: 426
+  - name: client_bearer_authenticate
+    methods:
+    - POST
+    - OPTIONS
+    paths:
+    - /api/consumer/bearer/auth
+    path_handling: v0
+    preserve_host: false
+    protocols:
+    - http
+    - https
+    regex_priority: 0
+    strip_path: false
+    https_redirect_status_code: 426
+  - name: client_bearer_authenticate_preflight
+    methods:
+    - OPTIONS
+    paths:
+    - /api/consumer/bearer/auth
+    path_handling: v0
+    preserve_host: false
+    protocols:
+    - http
+    - https
+    regex_priority: 0
+    strip_path: false
+    https_redirect_status_code: 426
+  - name: client_create_client
+    methods:
+    - POST
+    paths:
+    - /api/consumers
+    path_handling: v0
+    preserve_host: false
+    protocols:
+    - http
+    - https
+    regex_priority: 0
+    strip_path: false
+    https_redirect_status_code: 426
+  - name: client_read_client
+    methods:
+    - GET
+    paths:
+    - /api/consumers/.*
+    path_handling: v0
+    preserve_host: false
+    protocols:
+    - http
+    - https
+    regex_priority: 0
+    strip_path: false
+    https_redirect_status_code: 426
+    plugins:
+    - name: acl
+      config:
+        allow:
+        - consumer
+        deny: null
+        hide_groups_header: false
+      enabled: true
+      protocols:
+      - grpc
+      - grpcs
+      - http
+      - https
+    - name: jwt
+      config:
+        anonymous: null
+        claims_to_verify:
+        - exp
+        cookie_names: []
+        header_names:
+        - authorization
+        key_claim_name: iss
+        maximum_expiration: 0
+        run_on_preflight: true
+        secret_is_base64: true
+        uri_param_names:
+        - jwt
+      enabled: true
+      protocols:
+      - grpc
+      - grpcs
+      - http
+      - https
+  - name: client_read_client_preflight
+    methods:
+    - OPTIONS
+    paths:
+    - /api/consumers/.*
+    path_handling: v0
+    preserve_host: false
+    protocols:
+    - http
+    - https
+    regex_priority: 0
+    strip_path: false
+    https_redirect_status_code: 426
+  - name: client_update_client
+    methods:
+    - PUT
+    paths:
+    - /api/consumers
+    path_handling: v0
+    preserve_host: false
+    protocols:
+    - http
+    - https
+    regex_priority: 0
+    strip_path: false
+    https_redirect_status_code: 426
+    plugins:
+    - name: acl
+      config:
+        allow:
+        - consumer
+        deny: null
+        hide_groups_header: false
+      enabled: true
+      protocols:
+      - grpc
+      - grpcs
+      - http
+      - https
+    - name: jwt
+      config:
+        anonymous: null
+        claims_to_verify:
+        - exp
+        cookie_names: []
+        header_names:
+        - authorization
+        key_claim_name: iss
+        maximum_expiration: 0
+        run_on_preflight: true
+        secret_is_base64: true
+        uri_param_names:
+        - jwt
+      enabled: true
+      protocols:
+      - grpc
+      - grpcs
+      - http
+      - https
+- connect_timeout: 60000
+  host: co
+  name: co
+  path: /co
+  port: 8080
+  protocol: http
+  read_timeout: 60000
+  retries: 5
+  write_timeout: 60000
+  routes:
+  - name: co_delete_order
+    methods:
+    - DELETE
+    paths:
+    - /api/orders/.*
+    path_handling: v0
+    preserve_host: false
+    protocols:
+    - http
+    - https
+    regex_priority: 0
+    strip_path: false
+    https_redirect_status_code: 426
+    plugins:
+    - name: acl
+      config:
+        allow:
+        - manager
+        - admin
+        deny: null
+        hide_groups_header: false
+      enabled: true
+      protocols:
+      - grpc
+      - grpcs
+      - http
+      - https
+    - name: jwt
+      config:
+        anonymous: null
+        claims_to_verify:
+        - exp
+        cookie_names: []
+        header_names:
+        - authorization
+        key_claim_name: iss
+        maximum_expiration: 0
+        run_on_preflight: true
+        secret_is_base64: true
+        uri_param_names:
+        - jwt
+      enabled: true
+      protocols:
+      - grpc
+      - grpcs
+      - http
+      - https
+  - name: co_get_filtered_orders
+    methods:
+    - GET
+    paths:
+    - /api/orders.*
+    path_handling: v0
+    preserve_host: false
+    protocols:
+    - http
+    - https
+    regex_priority: 0
+    strip_path: false
+    https_redirect_status_code: 426
+    plugins:
+    - name: acl
+      config:
+        allow:
+        - consumer
+        - manager
+        - admin
+        deny: null
+        hide_groups_header: false
+      enabled: true
+      protocols:
+      - grpc
+      - grpcs
+      - http
+      - https
+    - name: jwt
+      config:
+        anonymous: null
+        claims_to_verify:
+        - exp
+        cookie_names: []
+        header_names:
+        - authorization
+        key_claim_name: iss
+        maximum_expiration: 0
+        run_on_preflight: true
+        secret_is_base64: true
+        uri_param_names:
+        - jwt
+      enabled: true
+      protocols:
+      - grpc
+      - grpcs
+      - http
+      - https
+  - name: co_get_filtered_orders_preflight
+    methods:
+    - OPTIONS
+    paths:
+    - /api/orders.*
+    path_handling: v0
+    preserve_host: false
+    protocols:
+    - http
+    - https
+    regex_priority: 0
+    strip_path: false
+    https_redirect_status_code: 426
+  - name: co_get_order
+    methods:
+    - GET
+    paths:
+    - /api/orders/.*
+    path_handling: v0
+    preserve_host: false
+    protocols:
+    - http
+    - https
+    regex_priority: 1
+    strip_path: false
+    https_redirect_status_code: 426
+    plugins:
+    - name: acl
+      config:
+        allow:
+        - consumer
+        - manager
+        - admin
+        deny: null
+        hide_groups_header: false
+      enabled: true
+      protocols:
+      - grpc
+      - grpcs
+      - http
+      - https
+    - name: jwt
+      config:
+        anonymous: null
+        claims_to_verify:
+        - exp
+        cookie_names: []
+        header_names:
+        - authorization
+        key_claim_name: iss
+        maximum_expiration: 0
+        run_on_preflight: true
+        secret_is_base64: true
+        uri_param_names:
+        - jwt
+      enabled: true
+      protocols:
+      - grpc
+      - grpcs
+      - http
+      - https
+  - name: co_get_order_preflight
+    methods:
+    - OPTIONS
+    paths:
+    - /api/orders/.*
+    path_handling: v0
+    preserve_host: false
+    protocols:
+    - http
+    - https
+    regex_priority: 0
+    strip_path: false
+    https_redirect_status_code: 426
+  - name: co_update_order_status
+    methods:
+    - PATCH
+    paths:
+    - /api/orders.*
+    path_handling: v0
+    preserve_host: false
+    protocols:
+    - http
+    - https
+    regex_priority: 2
+    strip_path: false
+    https_redirect_status_code: 426
+    plugins:
+    - name: acl
+      config:
+        allow:
+        - manager
+        - admin
+        deny: null
+        hide_groups_header: false
+      enabled: true
+      protocols:
+      - grpc
+      - grpcs
+      - http
+      - https
+    - name: jwt
+      config:
+        anonymous: null
+        claims_to_verify:
+        - exp
+        cookie_names: []
+        header_names:
+        - authorization
+        key_claim_name: iss
+        maximum_expiration: 0
+        run_on_preflight: true
+        secret_is_base64: true
+        uri_param_names:
+        - jwt
+      enabled: true
+      protocols:
+      - grpc
+      - grpcs
+      - http
+      - https
+- connect_timeout: 60000
+  host: cp
+  name: cp
+  path: /cp
+  port: 8080
+  protocol: http
+  read_timeout: 60000
+  retries: 5
+  write_timeout: 60000
+  routes:
+  - name: cp_create_version
+    methods:
+    - POST
+    paths:
+    - /api/versions/cp
+    path_handling: v0
+    preserve_host: false
+    protocols:
+    - http
+    - https
+    regex_priority: 0
+    strip_path: false
+    https_redirect_status_code: 426
+    plugins:
+    - name: acl
+      config:
+        allow:
+        - admin
+        deny: null
+        hide_groups_header: false
+      enabled: true
+      protocols:
+      - grpc
+      - grpcs
+      - http
+      - https
+    - name: jwt
+      config:
+        anonymous: null
+        claims_to_verify:
+        - exp
+        cookie_names: []
+        header_names:
+        - authorization
+        key_claim_name: iss
+        maximum_expiration: 0
+        run_on_preflight: true
+        secret_is_base64: true
+        uri_param_names:
+        - jwt
+      enabled: true
+      protocols:
+      - grpc
+      - grpcs
+      - http
+      - https
+- connect_timeout: 60000
+  host: manager
+  name: manager
+  path: /manager
+  port: 8080
+  protocol: http
+  read_timeout: 60000
+  retries: 5
+  write_timeout: 60000
+  routes:
+  - name: manager_basic_authenticate
+    methods:
+    - POST
+    paths:
+    - /api/manager/basic/auth
+    path_handling: v0
+    preserve_host: false
+    protocols:
+    - http
+    - https
+    regex_priority: 0
+    strip_path: false
+    https_redirect_status_code: 426
+  - name: employee_basic_authenticate_preflight
+    methods:
+    - OPTIONS
+    paths:
+    - /api/manager/basic/auth
+    path_handling: v0
+    preserve_host: false
+    protocols:
+    - http
+    - https
+    regex_priority: 0
+    strip_path: false
+    https_redirect_status_code: 426
+  - name: employee_bearer_authenticate
+    methods:
+    - POST
+    paths:
+    - /api/manager/bearer/auth
+    path_handling: v0
+    preserve_host: false
+    protocols:
+    - http
+    - https
+    regex_priority: 0
+    strip_path: false
+    https_redirect_status_code: 426
+  - name: employee_bearer_authenticate_preflight
+    methods:
+    - OPTIONS
+    paths:
+    - /api/manager/bearer/auth
+    path_handling: v0
+    preserve_host: false
+    protocols:
+    - http
+    - https
+    regex_priority: 0
+    strip_path: false
+    https_redirect_status_code: 426
+  - name: employee_create_employee
+    methods:
+    - POST
+    paths:
+    - /api/managers
+    path_handling: v0
+    preserve_host: false
+    protocols:
+    - http
+    - https
+    regex_priority: 0
+    strip_path: false
+    https_redirect_status_code: 426
+  - name: employee_update_employee
+    methods:
+    - PUT
+    paths:
+    - /api/managers/.*
+    path_handling: v0
+    preserve_host: false
+    protocols:
+    - http
+    - https
+    regex_priority: 0
+    strip_path: false
+    https_redirect_status_code: 426
+    plugins:
+    - name: acl
+      config:
+        allow:
+        - manager
+        deny: null
+        hide_groups_header: false
+      enabled: true
+      protocols:
+      - grpc
+      - grpcs
+      - http
+      - https
+    - name: jwt
+      config:
+        anonymous: null
+        claims_to_verify:
+        - exp
+        cookie_names: []
+        header_names:
+        - authorization
+        key_claim_name: iss
+        maximum_expiration: 0
+        run_on_preflight: true
+        secret_is_base64: true
+        uri_param_names:
+        - jwt
+      enabled: true
+      protocols:
+      - grpc
+      - grpcs
+      - http
+      - https
+- connect_timeout: 60000
+  host: inventory
+  name: inventory
+  path: /inventory
+  port: 8080
+  protocol: http
+  read_timeout: 60000
+  retries: 5
+  write_timeout: 60000
+  routes:
+  - name: inventory_get_product
+    methods:
+    - GET
+    paths:
+    - /api/products/.*/stock
+    path_handling: v0
+    preserve_host: false
+    protocols:
+    - http
+    - https
+    regex_priority: 3
+    strip_path: false
+    https_redirect_status_code: 426
+    plugins:
+    - name: acl
+      config:
+        allow:
+        - manager
+        - admin
+        deny: null
+        hide_groups_header: false
+      enabled: true
+      protocols:
+      - grpc
+      - grpcs
+      - http
+      - https
+    - name: jwt
+      config:
+        anonymous: null
+        claims_to_verify:
+        - exp
+        cookie_names: []
+        header_names:
+        - authorization
+        key_claim_name: iss
+        maximum_expiration: 0
+        run_on_preflight: true
+        secret_is_base64: true
+        uri_param_names:
+        - jwt
+      enabled: true
+      protocols:
+      - grpc
+      - grpcs
+      - http
+      - https
+  - name: inventory_update_product
+    methods:
+    - PATCH
+    paths:
+    - /api/products/.*/stock
+    path_handling: v0
+    preserve_host: false
+    protocols:
+    - http
+    - https
+    regex_priority: 0
+    strip_path: false
+    https_redirect_status_code: 426
+    plugins:
+    - name: acl
+      config:
+        allow:
+        - manager
+        - admin
+        deny: null
+        hide_groups_header: false
+      enabled: true
+      protocols:
+      - grpc
+      - grpcs
+      - http
+      - https
+    - name: jwt
+      config:
+        anonymous: null
+        claims_to_verify:
+        - exp
+        cookie_names: []
+        header_names:
+        - authorization
+        key_claim_name: iss
+        maximum_expiration: 0
+        run_on_preflight: true
+        secret_is_base64: true
+        uri_param_names:
+        - jwt
+      enabled: true
+      protocols:
+      - grpc
+      - grpcs
+      - http
+      - https
+  - name: inventory_update_product_preflight
+    methods:
+    - OPTIONS
+    paths:
+    - /api/products/.*/stock
+    path_handling: v0
+    preserve_host: false
+    protocols:
+    - http
+    - https
+    regex_priority: 0
+    strip_path: false
+    https_redirect_status_code: 426
+- connect_timeout: 60000
+  host: populate
+  name: populate
+  path: /populate
+  port: 8080
+  protocol: http
+  read_timeout: 60000
+  retries: 5
+  write_timeout: 60000
+  routes:
+  - name: populate_populate_1
+    methods:
+    - POST
+    paths:
+    - /api/populate/1
+    path_handling: v0
+    preserve_host: false
+    protocols:
+    - http
+    - https
+    regex_priority: 2
+    strip_path: false
+    https_redirect_status_code: 426
+    plugins:
+    - name: acl
+      config:
+        allow:
+        - admin
+        - manager
+        deny: null
+        hide_groups_header: false
+      enabled: true
+      protocols:
+      - grpc
+      - grpcs
+      - http
+      - https
+    - name: jwt
+      config:
+        anonymous: null
+        claims_to_verify:
+        - exp
+        cookie_names: []
+        header_names:
+        - authorization
+        key_claim_name: iss
+        maximum_expiration: 0
+        run_on_preflight: true
+        secret_is_base64: true
+        uri_param_names:
+        - jwt
+      enabled: true
+      protocols:
+      - grpc
+      - grpcs
+      - http
+      - https
+  - name: populate_populate_2
+    methods:
+    - POST
+    paths:
+    - /api/populate/2
+    path_handling: v0
+    preserve_host: false
+    protocols:
+    - http
+    - https
+    regex_priority: 2
+    strip_path: false
+    https_redirect_status_code: 426
+    plugins:
+    - name: acl
+      config:
+        allow:
+        - admin
+        - manager
+        deny: null
+        hide_groups_header: false
+      enabled: true
+      protocols:
+      - grpc
+      - grpcs
+      - http
+      - https
+    - name: jwt
+      config:
+        anonymous: null
+        claims_to_verify:
+        - exp
+        cookie_names: []
+        header_names:
+        - authorization
+        key_claim_name: iss
+        maximum_expiration: 0
+        run_on_preflight: true
+        secret_is_base64: true
+        uri_param_names:
+        - jwt
+      enabled: true
+      protocols:
+      - grpc
+      - grpcs
+      - http
+      - https
+  - name: populate_populate_3
+    methods:
+    - POST
+    paths:
+    - /api/populate/3
+    path_handling: v0
+    preserve_host: false
+    protocols:
+    - http
+    - https
+    regex_priority: 2
+    strip_path: false
+    https_redirect_status_code: 426
+    plugins:
+    - name: acl
+      config:
+        allow:
+        - admin
+        - manager
+        deny: null
+        hide_groups_header: false
+      enabled: true
+      protocols:
+      - grpc
+      - grpcs
+      - http
+      - https
+    - name: jwt
+      config:
+        anonymous: null
+        claims_to_verify:
+        - exp
+        cookie_names: []
+        header_names:
+        - authorization
+        key_claim_name: iss
+        maximum_expiration: 0
+        run_on_preflight: true
+        secret_is_base64: true
+        uri_param_names:
+        - jwt
+      enabled: true
+      protocols:
+      - grpc
+      - grpcs
+      - http
+      - https
+  - name: populate_populate_4
+    methods:
+    - POST
+    paths:
+    - /api/populate/4
+    path_handling: v0
+    preserve_host: false
+    protocols:
+    - http
+    - https
+    regex_priority: 2
+    strip_path: false
+    https_redirect_status_code: 426
+    plugins:
+    - name: acl
+      config:
+        allow:
+        - admin
+        - manager
+        deny: null
+        hide_groups_header: false
+      enabled: true
+      protocols:
+      - grpc
+      - grpcs
+      - http
+      - https
+    - name: jwt
+      config:
+        anonymous: null
+        claims_to_verify:
+        - exp
+        cookie_names: []
+        header_names:
+        - authorization
+        key_claim_name: iss
+        maximum_expiration: 0
+        run_on_preflight: true
+        secret_is_base64: true
+        uri_param_names:
+        - jwt
+      enabled: true
+      protocols:
+      - grpc
+      - grpcs
+      - http
+      - https
+  - name: populate_populate_5
+    methods:
+    - POST
+    paths:
+    - /api/populate/5
+    path_handling: v0
+    preserve_host: false
+    protocols:
+    - http
+    - https
+    regex_priority: 2
+    strip_path: false
+    https_redirect_status_code: 426
+    plugins:
+    - name: acl
+      config:
+        allow:
+        - admin
+        - manager
+        deny: null
+        hide_groups_header: false
+      enabled: true
+      protocols:
+      - grpc
+      - grpcs
+      - http
+      - https
+    - name: jwt
+      config:
+        anonymous: null
+        claims_to_verify:
+        - exp
+        cookie_names: []
+        header_names:
+        - authorization
+        key_claim_name: iss
+        maximum_expiration: 0
+        run_on_preflight: true
+        secret_is_base64: true
+        uri_param_names:
+        - jwt
+      enabled: true
+      protocols:
+      - grpc
+      - grpcs
+      - http
+      - https
+  - name: populate_populate_6
+    methods:
+    - POST
+    paths:
+    - /api/populate/6
+    path_handling: v0
+    preserve_host: false
+    protocols:
+    - http
+    - https
+    regex_priority: 2
+    strip_path: false
+    https_redirect_status_code: 426
+    plugins:
+    - name: acl
+      config:
+        allow:
+        - admin
+        - manager
+        deny: null
+        hide_groups_header: false
+      enabled: true
+      protocols:
+      - grpc
+      - grpcs
+      - http
+      - https
+    - name: jwt
+      config:
+        anonymous: null
+        claims_to_verify:
+        - exp
+        cookie_names: []
+        header_names:
+        - authorization
+        key_claim_name: iss
+        maximum_expiration: 0
+        run_on_preflight: true
+        secret_is_base64: true
+        uri_param_names:
+        - jwt
+      enabled: true
+      protocols:
+      - grpc
+      - grpcs
+      - http
+      - https
+  - name: populate_populate_7
+    methods:
+    - POST
+    paths:
+    - /api/populate/7
+    path_handling: v0
+    preserve_host: false
+    protocols:
+    - http
+    - https
+    regex_priority: 2
+    strip_path: false
+    https_redirect_status_code: 426
+    plugins:
+    - name: acl
+      config:
+        allow:
+        - admin
+        - manager
+        deny: null
+        hide_groups_header: false
+      enabled: true
+      protocols:
+      - grpc
+      - grpcs
+      - http
+      - https
+    - name: jwt
+      config:
+        anonymous: null
+        claims_to_verify:
+        - exp
+        cookie_names: []
+        header_names:
+        - authorization
+        key_claim_name: iss
+        maximum_expiration: 0
+        run_on_preflight: true
+        secret_is_base64: true
+        uri_param_names:
+        - jwt
+      enabled: true
+      protocols:
+      - grpc
+      - grpcs
+      - http
+      - https
+- connect_timeout: 60000
+  host: qcap
+  name: qcap
+  path: /qcap
+  port: 8080
+  protocol: http
+  read_timeout: 60000
+  retries: 5
+  write_timeout: 60000
+  routes:
+  - name: qc_read_category_products_by_visibility
+    methods:
+    - GET
+    paths:
+    - /api/categories/.*/products
+    path_handling: v0
+    preserve_host: false
+    protocols:
+    - http
+    - https
+    regex_priority: 1
+    strip_path: false
+    https_redirect_status_code: 426
+    plugins:
+    - name: acl
+      config:
+        allow:
+        - manager
+        - admin
+        deny: null
+        hide_groups_header: false
+      enabled: true
+      protocols:
+      - grpc
+      - grpcs
+      - http
+      - https
+    - name: jwt
+      config:
+        anonymous: null
+        claims_to_verify:
+        - exp
+        cookie_names: []
+        header_names:
+        - authorization
+        key_claim_name: iss
+        maximum_expiration: 0
+        run_on_preflight: true
+        secret_is_base64: true
+        uri_param_names:
+        - jwt
+      enabled: true
+      protocols:
+      - grpc
+      - grpcs
+      - http
+      - https
+  - name: qc_read_category_products_by_visibility_preflight
+    methods:
+    - OPTIONS
+    paths:
+    - /api/categories/.*/products
+    path_handling: v0
+    preserve_host: false
+    protocols:
+    - http
+    - https
+    regex_priority: 1
+    strip_path: false
+    https_redirect_status_code: 426
+- connect_timeout: 60000
+  host: qct
+  name: qct
+  path: /qct
+  port: 8080
+  protocol: http
+  read_timeout: 60000
+  retries: 5
+  write_timeout: 60000
+  routes:
+  - name: qct_create_version
+    methods:
+    - POST
+    paths:
+    - /api/versions/qct
+    path_handling: v0
+    preserve_host: false
+    protocols:
+    - http
+    - https
+    regex_priority: 0
+    strip_path: false
+    https_redirect_status_code: 426
+    plugins:
+    - name: acl
+      config:
+        allow:
+        - admin
+        deny: null
+        hide_groups_header: false
+      enabled: true
+      protocols:
+      - grpc
+      - grpcs
+      - http
+      - https
+    - name: jwt
+      config:
+        anonymous: null
+        claims_to_verify:
+        - exp
+        cookie_names: []
+        header_names:
+        - authorization
+        key_claim_name: iss
+        maximum_expiration: 0
+        run_on_preflight: true
+        secret_is_base64: true
+        uri_param_names:
+        - jwt
+      enabled: true
+      protocols:
+      - grpc
+      - grpcs
+      - http
+      - https
+  - name: qct_read_category_tree
+    methods:
+    - GET
+    paths:
+    - /api/categories/tree
+    path_handling: v0
+    preserve_host: false
+    protocols:
+    - http
+    - https
+    regex_priority: 0
+    strip_path: false
+    https_redirect_status_code: 426
+  - name: qct_read_category_tree_preflight
+    methods:
+    - OPTIONS
+    paths:
+    - /api/categories/tree
+    path_handling: v0
+    preserve_host: false
+    protocols:
+    - http
+    - https
+    regex_priority: 0
+    strip_path: false
+    https_redirect_status_code: 426
+- connect_timeout: 60000
+  host: qcvp
+  name: qcvp
+  path: /qcvp
+  port: 8080
+  protocol: http
+  read_timeout: 60000
+  retries: 5
+  write_timeout: 60000
+  routes:
+  - name: qcvp_read_visible_category_products
+    methods:
+    - GET
+    - OPTIONS
+    paths:
+    - /api/categories/.*/products/visible
+    path_handling: v0
+    preserve_host: false
+    protocols:
+    - http
+    - https
+    regex_priority: 2
+    strip_path: false
+    https_redirect_status_code: 426
+- connect_timeout: 60000
+  host: qp
+  name: qp
+  path: /qp
+  port: 8080
+  protocol: http
+  read_timeout: 60000
+  retries: 5
+  write_timeout: 60000
+  routes:
+  - name: qp_create_version
+    methods:
+    - POST
+    paths:
+    - /api/versions/qp
+    path_handling: v0
+    preserve_host: false
+    protocols:
+    - http
+    - https
+    regex_priority: 0
+    strip_path: false
+    https_redirect_status_code: 426
+    plugins:
+    - name: acl
+      config:
+        allow:
+        - admin
+        deny: null
+        hide_groups_header: false
+      enabled: true
+      protocols:
+      - grpc
+      - grpcs
+      - http
+      - https
+    - name: jwt
+      config:
+        anonymous: null
+        claims_to_verify:
+        - exp
+        cookie_names: []
+        header_names:
+        - authorization
+        key_claim_name: iss
+        maximum_expiration: 0
+        run_on_preflight: true
+        secret_is_base64: true
+        uri_param_names:
+        - jwt
+      enabled: true
+      protocols:
+      - grpc
+      - grpcs
+      - http
+      - https
+  - name: qp_read_product
+    methods:
+    - GET
+    paths:
+    - /api/products
+    path_handling: v0
+    preserve_host: false
+    protocols:
+    - http
+    - https
+    regex_priority: 0
+    strip_path: false
+    https_redirect_status_code: 426
+    plugins:
+    - name: acl
+      config:
+        allow:
+        - manager
+        - admin
+        deny: null
+        hide_groups_header: false
+      enabled: true
+      protocols:
+      - grpc
+      - grpcs
+      - http
+      - https
+    - name: jwt
+      config:
+        anonymous: null
+        claims_to_verify:
+        - exp
+        cookie_names: []
+        header_names:
+        - authorization
+        key_claim_name: iss
+        maximum_expiration: 0
+        run_on_preflight: true
+        secret_is_base64: true
+        uri_param_names:
+        - jwt
+      enabled: true
+      protocols:
+      - grpc
+      - grpcs
+      - http
+      - https
+  - name: qp_read_product_preflight
+    methods:
+    - OPTIONS
+    paths:
+    - /api/products
+    path_handling: v0
+    preserve_host: false
+    protocols:
+    - http
+    - https
+    regex_priority: 0
+    strip_path: false
+    https_redirect_status_code: 426
+  - name: qp_read_visible_product
+    methods:
+    - GET
+    paths:
+    - /api/products/.*/visible
+    path_handling: v0
+    preserve_host: false
+    protocols:
+    - http
+    - https
+    regex_priority: 0
+    strip_path: false
+    https_redirect_status_code: 426
+- connect_timeout: 60000
+  host: saga
+  name: saga
+  path: /saga
+  port: 8080
+  protocol: http
+  read_timeout: 60000
+  retries: 5
+  write_timeout: 60000
+  routes:
+  - name: saga_create_saga_definition
+    methods:
+    - POST
+    paths:
+    - /api/sagasdefinitions
+    path_handling: v0
+    preserve_host: false
+    protocols:
+    - http
+    - https
+    regex_priority: 0
+    strip_path: false
+    https_redirect_status_code: 426
+    plugins:
+    - name: acl
+      config:
+        allow:
+        - admin
+        deny: null
+        hide_groups_header: false
+      enabled: true
+      protocols:
+      - grpc
+      - grpcs
+      - http
+      - https
+    - name: jwt
+      config:
+        anonymous: null
+        claims_to_verify:
+        - exp
+        cookie_names: []
+        header_names:
+        - authorization
+        key_claim_name: iss
+        maximum_expiration: 0
+        run_on_preflight: true
+        secret_is_base64: true
+        uri_param_names:
+        - jwt
+      enabled: true
+      protocols:
+      - grpc
+      - grpcs
+      - http
+      - https
+  - name: saga_delete_saga_definition
+    methods:
+    - DELETE
+    paths:
+    - /api/sagasdefinitions/.*
+    path_handling: v0
+    preserve_host: false
+    protocols:
+    - http
+    - https
+    regex_priority: 0
+    strip_path: false
+    https_redirect_status_code: 426
+    plugins:
+    - name: acl
+      config:
+        allow:
+        - admin
+        deny: null
+        hide_groups_header: false
+      enabled: true
+      protocols:
+      - grpc
+      - grpcs
+      - http
+      - https
+    - name: jwt
+      config:
+        anonymous: null
+        claims_to_verify:
+        - exp
+        cookie_names: []
+        header_names:
+        - authorization
+        key_claim_name: iss
+        maximum_expiration: 0
+        run_on_preflight: true
+        secret_is_base64: true
+        uri_param_names:
+        - jwt
+      enabled: true
+      protocols:
+      - grpc
+      - grpcs
+      - http
+      - https
+  - name: saga_generic
+    methods:
+    - GET
+    - POST
+    - PUT
+    - PATCH
+    - DELETE
+    paths:
+    - /api/processes
+    path_handling: v0
+    preserve_host: false
+    protocols:
+    - http
+    - https
+    regex_priority: 0
+    strip_path: false
+    https_redirect_status_code: 426
+    plugins:
+    - name: acl
+      config:
+        allow:
+        - consumer
+        - manager
+        - admin
+        deny: null
+        hide_groups_header: false
+      enabled: true
+      protocols:
+      - grpc
+      - grpcs
+      - http
+      - https
+    - name: jwt
+      config:
+        anonymous: null
+        claims_to_verify:
+        - exp
+        cookie_names: []
+        header_names:
+        - authorization
+        key_claim_name: iss
+        maximum_expiration: 0
+        run_on_preflight: true
+        secret_is_base64: true
+        uri_param_names:
+        - jwt
+      enabled: true
+      protocols:
+      - grpc
+      - grpcs
+      - http
+      - https
+  - name: saga_generic_preflight
+    methods:
+    - OPTIONS
+    paths:
+    - /api/processes
+    path_handling: v0
+    preserve_host: false
+    protocols:
+    - http
+    - https
+    regex_priority: 0
+    strip_path: false
+    https_redirect_status_code: 426
+  - name: saga_read_saga
+    methods:
+    - GET
+    paths:
+    - /api/sagas
+    path_handling: v0
+    preserve_host: false
+    protocols:
+    - http
+    - https
+    regex_priority: 0
+    strip_path: false
+    https_redirect_status_code: 426
+    plugins:
+    - name: acl
+      config:
+        allow:
+        - admin
+        - manager
+        - consumer
+        deny: null
+        hide_groups_header: false
+      enabled: true
+      protocols:
+      - grpc
+      - grpcs
+      - http
+      - https
+    - name: jwt
+      config:
+        anonymous: null
+        claims_to_verify:
+        - exp
+        cookie_names: []
+        header_names:
+        - authorization
+        key_claim_name: iss
+        maximum_expiration: 0
+        run_on_preflight: true
+        secret_is_base64: true
+        uri_param_names:
+        - jwt
+      enabled: true
+      protocols:
+      - grpc
+      - grpcs
+      - http
+      - https
+  - name: saga_read_sagas_preflight
+    methods:
+    - OPTIONS
+    paths:
+    - /api/sagas
+    path_handling: v0
+    preserve_host: false
+    protocols:
+    - http
+    - https
+    regex_priority: 0
+    strip_path: false
+    https_redirect_status_code: 426
+  - name: saga_update_saga_definition
+    methods:
+    - PUT
+    paths:
+    - /api/sagasdefinitions/.*
+    path_handling: v0
+    preserve_host: false
+    protocols:
+    - http
+    - https
+    regex_priority: 0
+    strip_path: false
+    https_redirect_status_code: 426
+    plugins:
+    - name: acl
+      config:
+        allow:
+        - admin
+        deny: null
+        hide_groups_header: false
+      enabled: true
+      protocols:
+      - grpc
+      - grpcs
+      - http
+      - https
+    - name: jwt
+      config:
+        anonymous: null
+        claims_to_verify:
+        - exp
+        cookie_names: []
+        header_names:
+        - authorization
+        key_claim_name: iss
+        maximum_expiration: 0
+        run_on_preflight: true
+        secret_is_base64: true
+        uri_param_names:
+        - jwt
+      enabled: true
+      protocols:
+      - grpc
+      - grpcs
+      - http
+      - https
+- connect_timeout: 60000
+  host: sc
+  name: sc
+  path: /sc
+  port: 8080
+  protocol: http
+  read_timeout: 60000
+  retries: 5
+  write_timeout: 60000
+  routes:
+  - name: sc_delete_shopping_cart_products
+    methods:
+    - DELETE
+    paths:
+    - /api/shoppingcarts/.*/products
+    path_handling: v0
+    preserve_host: false
+    protocols:
+    - http
+    - https
+    regex_priority: 0
+    strip_path: false
+    https_redirect_status_code: 426
+    plugins:
+    - name: acl
+      config:
+        allow:
+        - consumer
+        deny: null
+        hide_groups_header: false
+      enabled: true
+      protocols:
+      - grpc
+      - grpcs
+      - http
+      - https
+    - name: jwt
+      config:
+        anonymous: null
+        claims_to_verify:
+        - exp
+        cookie_names: []
+        header_names:
+        - authorization
+        key_claim_name: iss
+        maximum_expiration: 0
+        run_on_preflight: true
+        secret_is_base64: true
+        uri_param_names:
+        - jwt
+      enabled: true
+      protocols:
+      - grpc
+      - grpcs
+      - http
+      - https
+  - name: sc_read_shopping_cart
+    methods:
+    - GET
+    paths:
+    - /api/shoppingcarts/.*
+    path_handling: v0
+    preserve_host: false
+    protocols:
+    - http
+    - https
+    regex_priority: 0
+    strip_path: false
+    https_redirect_status_code: 426
+    plugins:
+    - name: acl
+      config:
+        allow:
+        - consumer
+        deny: null
+        hide_groups_header: false
+      enabled: true
+      protocols:
+      - grpc
+      - grpcs
+      - http
+      - https
+    - name: jwt
+      config:
+        anonymous: null
+        claims_to_verify:
+        - exp
+        cookie_names: []
+        header_names:
+        - authorization
+        key_claim_name: iss
+        maximum_expiration: 0
+        run_on_preflight: true
+        secret_is_base64: true
+        uri_param_names:
+        - jwt
+      enabled: true
+      protocols:
+      - grpc
+      - grpcs
+      - http
+      - https
+  - name: sc_read_shopping_cart_size
+    methods:
+    - GET
+    paths:
+    - /api/shoppingcarts/.*/size
+    path_handling: v0
+    preserve_host: false
+    protocols:
+    - http
+    - https
+    regex_priority: 2
+    strip_path: false
+    https_redirect_status_code: 426
+    plugins:
+    - name: acl
+      config:
+        allow:
+        - consumer
+        deny: null
+        hide_groups_header: false
+      enabled: true
+      protocols:
+      - grpc
+      - grpcs
+      - http
+      - https
+    - name: jwt
+      config:
+        anonymous: null
+        claims_to_verify:
+        - exp
+        cookie_names: []
+        header_names:
+        - authorization
+        key_claim_name: iss
+        maximum_expiration: 0
+        run_on_preflight: true
+        secret_is_base64: true
+        uri_param_names:
+        - jwt
+      enabled: true
+      protocols:
+      - grpc
+      - grpcs
+      - http
+      - https
+  - name: sc_update_shopping_cart
+    methods:
+    - PATCH
+    paths:
+    - /api/shoppingcarts
+    path_handling: v0
+    preserve_host: false
+    protocols:
+    - http
+    - https
+    regex_priority: 0
+    strip_path: false
+    https_redirect_status_code: 426
+    plugins:
+    - name: acl
+      config:
+        allow:
+        - consumer
+        - manager
+        - admin
+        deny: null
+        hide_groups_header: false
+      enabled: true
+      protocols:
+      - grpc
+      - grpcs
+      - http
+      - https
+    - name: jwt
+      config:
+        anonymous: null
+        claims_to_verify:
+        - exp
+        cookie_names: []
+        header_names:
+        - authorization
+        key_claim_name: iss
+        maximum_expiration: 0
+        run_on_preflight: true
+        secret_is_base64: true
+        uri_param_names:
+        - jwt
+      enabled: true
+      protocols:
+      - grpc
+      - grpcs
+      - http
+      - https
+  - name: sc_update_shopping_cart_preflight
+    methods:
+    - OPTIONS
+    paths:
+    - /api/shoppingcarts/[A-Za-z1-9]+
+    path_handling: v0
+    preserve_host: false
+    protocols:
+    - http
+    - https
+    regex_priority: 0
+    strip_path: false
+    https_redirect_status_code: 426
+consumers:
+- username: admin
+  jwt_secrets:
+  - algorithm: HS256
+    key: 6FMAJB0nPuUUF3BNr9rmoNdyP2jCv03S
+    secret: TooCbDNBXz5xUJPodc5MhijkjLfdjWxm
+  acls:
+  - group: admin
+- username: consumer
+  jwt_secrets:
+  - algorithm: HS256
+    key: 6FMAJB0nPuUUF3BNr9rmoNdyP2jcVDyF
+    secret: TooCbDNBXz5xUJPodc5MhijkjLfdjWxm
+  acls:
+  - group: consumer
+- username: manager
+  jwt_secrets:
+  - algorithm: HS256
+    key: iFVzrgQGkvja8GePNjoNG0UvuQmKIspN
+    secret: TooCbDNBXz5xUJPodc5MhijkjLfdjWxm
+  acls:
+  - group: manager
+plugins:
+- name: cors
+  config:
+    credentials: true
+    exposed_headers:
+    - Authorization
+    - '*'
+    headers:
+    - Authorization
+    - '*'
+    max_age: 3600
+    methods:
+    - GET
+    - POST
+    - PUT
+    - PATCH
+    - DELETE
+    origins:
+    - '*'
+    preflight_continue: false
+  enabled: true
+  protocols:
+  - grpc
+  - grpcs
+  - http
+  - https

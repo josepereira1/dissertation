@@ -1,0 +1,48 @@
+{
+  "$schema" : "http://json-schema.org/draft-04/schema#",
+  "title": "message",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "shortDetails": {
+    },
+    "longDetails": {
+    },
+    "currency": {
+      "type": "string"
+    },
+    "initialPrice": {
+      "type": "number"
+    },
+    "discountPercentage": {
+      "type": "number"
+    },
+    "vatPercentage": {
+      "type": "number"
+    },
+    "shipping": {
+      "type": "number"
+    },
+    "links": {
+    },
+    "visibility": {
+      "type": "string"
+    },
+    "sku": {
+      "type": "string"
+    },
+    "ean": {
+      "type": "string"
+    },
+    "pn": {
+      "type": "string"
+    }
+  },
+  "required": ["id", "name", "shortDetails", "longDetails", "currency", "initialPrice", "discountPercentage", "vatPercentage", "shipping", "links", "visibility", "sku", "ean", "pn"],
+  "additionalProperties": false
+}

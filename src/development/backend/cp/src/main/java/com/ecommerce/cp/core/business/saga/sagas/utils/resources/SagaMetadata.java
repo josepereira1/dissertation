@@ -1,0 +1,15 @@
+package com.ecommerce.cp.core.business.saga.sagas.utils.resources;
+
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
+
+@NoArgsConstructor
+@Getter
+@Setter
+@ToString
+public class SagaMetadata {
+    private String sagaId;
+    private String token;
+}
