@@ -13,7 +13,7 @@
 - [Docker images repository](https://hub.docker.com/u/josepereira1)
 
 # Index:
-- Microservice List(#microservice-list)
+- [Microservice List](#microservice-list)
 - [How to deploy the case study](#how-to-deploy-the-case-study)
   - [Requirements]#requirements)
   - [Deployment process (Unix)](#deployment-process-unix)
