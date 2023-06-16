@@ -15,7 +15,7 @@
 # Index:
 - [Microservice List](#microservice-list)
 - [How to deploy the case study](#how-to-deploy-the-case-study)
-  - [Requirements]#requirements)
+  - [Requirements](#requirements)
   - [Deployment process (Unix)](#deployment-process-unix)
   - [After first deployment](#after-first-deployment) 
 - [Use case study application (after deployment)](#use-case-study-application-after-deployment)
