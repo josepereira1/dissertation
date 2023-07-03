@@ -51,7 +51,7 @@
 
 - Download the repository:
 ```cmd
-$ git clone https://github.com/josepereira1/dissertation.git
+git clone https://github.com/josepereira1/dissertation.git
 ```
 
 - Set the docker volumes dir or leave the default (/tmp/dissertation/docker-volumes)
@@ -60,19 +60,19 @@ $ git clone https://github.com/josepereira1/dissertation.git
 
 - Execute deployment:
 ```cmd
-$ cd src/deployment
-$ make deployment
+cd src/deployment
+make deployment
 ```
 - Wait some time (3 minutes, or check the cpu usage, when it decrease significantly, probably the deployment ended).
 
 - Setup base data and configurations:
 ```cmd
-$ make setup
+make setup
 ```
 
 - Populate data (products, categories and associate them):
 ```cmd
-$ make populate
+make populate
 ```
 
 The **create product** functionality is asynchronous process, than when **populate** process ends, it will take some time until all products are created and associated with categories.
@@ -115,7 +115,7 @@ After deploy application, access via web browser to [http://localhost:8080](http
 Can consult logs per service to see command and reply messages used in microservices patterns, using the next command:
 
 ```cmd
-$ make <<service_name>>
+make <<service_name>>
 ```
 Examples:
 ```cmd
