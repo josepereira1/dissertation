@@ -119,5 +119,5 @@ make <<service_name>>
 ```
 Examples:
 ```cmd
-$ make cp
+make cp
 ```
