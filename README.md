@@ -4,9 +4,10 @@
 
 # Dissertation: Study on the importance of the Principles and  Patterns of Microservices Architectures
 
-**Notice**: The dissertation document will be placed here shortly when it is published.
+**Notice**: You can view the dissertation document [here](https://hdl.handle.net/1822/85581).
 
 # Links:
+- [Dissertation Document](https://hdl.handle.net/1822/85581)
 - [Website](https://josepereira1.github.io/)
 - [LinkedIn](https://www.linkedin.com/in/joseandrepereira)
 - [Github](https://github.com/josepereira1)
